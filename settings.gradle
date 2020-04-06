@@ -1,0 +1,7 @@
+rootProject.name='Embedded'
+include ':app'
+include ':app:lab2'
+include ':lab22'
+include ':lab31'
+include ':lab32'
+include ':lab33'
