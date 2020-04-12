@@ -167,4 +167,40 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.557" />
 
+    <EditText
+        android:id="@+id/edit_mutation"
+        android:layout_width="74dp"
+        android:layout_height="42dp"
+        android:layout_marginBottom="14dp"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        android:text="0.5"
+        app:layout_constraintBottom_toTopOf="@+id/edit_y"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.468"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edit_d"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="mutation:"
+        app:layout_constraintBottom_toTopOf="@+id/textView5"
+        app:layout_constraintEnd_toStartOf="@+id/edit_mutation"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+    <TextView
+        android:id="@+id/mut_warning"
+        android:layout_width="103dp"
+        android:layout_height="82dp"
+        app:layout_constraintBottom_toTopOf="@+id/count_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.382"
+        app:layout_constraintStart_toEndOf="@+id/edit_mutation"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.933" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

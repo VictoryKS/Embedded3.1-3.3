@@ -110,6 +110,7 @@ public class MainActivity extends AppCompatActivity {
         editP2x2.setText("5");
 
         final TextView res = findViewById(R.id.res_txt);
+        final TextView iterTxt = findViewById(R.id.iterations_txt);
 
         btnCount = findViewById(R.id.count_btn);
         btnCount.setOnClickListener(new View.OnClickListener() {
@@ -123,7 +124,9 @@ public class MainActivity extends AppCompatActivity {
 
                 Point point1 = new Point(p1x1, p1x2);
                 Point point2 = new Point(p2x1, p2x2);
-                res.setText(neural(point1, point2, p, iterations, time, speed));
+                String[] result = neural(point1, point2, p, iterations, time, speed);
+                res.setText(result[0]);
+                iterTxt.setText(result[1]);
             }
         });
     }
@@ -138,8 +141,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private String neural (Point p1, Point p2, double p, int iterations, double time, double speed) {
-        String result = "";
+    private String[] neural (Point p1, Point p2, double p, int iterations, double time, double speed) {
+        String[] result = new String[2];
         double startTime = System.currentTimeMillis();
 
         double w1 = 0.0, w2 = 0.0;
@@ -161,17 +164,18 @@ public class MainActivity extends AppCompatActivity {
             isPoint1 = !isPoint1;
 
             if (iteration >= iterations) {
-                result = "Too much iterations!\n";
+                result[0] = "Too much iterations!\n";
                 break;
             }
 
             double currentTime = System.currentTimeMillis();
             if (currentTime - startTime >= time * 1000) {
-                result = "Reached deadline time!\n";
+                result[0] = "Reached deadline time!\n";
                 break;
             }
         }
-        result += "w1 = " + ((double) Math.round(w1 * 100) / 100) + "; w2 = " + ((double) Math.round(w2 * 100) / 100);
+        result[0] += "w1 = " + ((double) Math.round(w1 * 100) / 100) + "; w2 = " + ((double) Math.round(w2 * 100) / 100);
+        result[1] = iteration + "";
         return result;
     }
 }

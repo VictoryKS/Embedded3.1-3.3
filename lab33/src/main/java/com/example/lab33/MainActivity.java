@@ -22,7 +22,9 @@ public class MainActivity extends AppCompatActivity {
         final EditText editC = findViewById(R.id.edit_c);
         final EditText editD = findViewById(R.id.edit_d);
         final EditText editY = findViewById(R.id.edit_y);
+        final EditText editMut = findViewById(R.id.edit_mutation);
         final TextView res = findViewById(R.id.text_res);
+        final TextView warning = findViewById(R.id.mut_warning);
 
         Button btnCount = findViewById(R.id.count_btn);
         btnCount.setOnClickListener(new View.OnClickListener() {
@@ -33,17 +35,22 @@ public class MainActivity extends AppCompatActivity {
                 double c = new Double(editC.getText().toString());
                 double d = new Double(editD.getText().toString());
                 double y = new Double(editY.getText().toString());
-                Genetic genetic = new Genetic();
-                res.setText(genetic.count(a, b, c, d, y));
+                double mutation = new Double(editMut.getText().toString());
+                if (mutation > 0 && mutation < 1) {
+                    warning.setText("");
+                    Genetic genetic = new Genetic();
+                    res.setText(genetic.count(a, b, c, d, y, mutation));
+                } else {
+                    warning.setText("Mutation must be in range from 0 to 1!");
+                }
             }
         });
     }
 
     private class Genetic {
         private int maxIteration = 1000;
-        private double mutation = 0.5;
 
-        private String count(double a, double b, double c, double d, double y) {
+        private String count(double a, double b, double c, double d, double y, double mutation) {
             Random random = new Random();
             ArrayList<ArrayList<Double>> population = new ArrayList<>();
 
